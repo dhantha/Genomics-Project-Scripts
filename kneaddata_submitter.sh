@@ -10,7 +10,6 @@
 #$ -l h_vmem=16G
 #$ -q all.q
 
-
 . /etc/profile.d/modules.sh
 module load shared
 module load proteus

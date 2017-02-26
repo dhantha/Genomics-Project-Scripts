@@ -1,0 +1,33 @@
+ Initial number of reads ( /scratch/dag332/kneaddata/JRKD001_S1_L001_R1_001.fastq ): 136507124.0
+ Initial number of reads ( /scratch/dag332/kneaddata/JRKD001_S1_L001_R2_001.fastq ): 136507124.0
+Running Trimmomatic ... 
+Total reads after trimming ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata.trimmed.1.fastq ): 99345105.0
+Total reads after trimming ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata.trimmed.2.fastq ): 99345105.0
+Total reads after trimming ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata.trimmed.single.1.fastq ): 27081206.0
+Total reads after trimming ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata.trimmed.single.2.fastq ): 2759975.0
+Decontaminating ...
+Running bowtie2 ... 
+Running bowtie2 ... 
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_Homo_sapiens_bowtie2_clean_1.fastq ): 99167632.0
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_Homo_sapiens_bowtie2_clean_2.fastq ): 99167632.0
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_ant_genome_db_bowtie2_clean_1.fastq ): 99334485.0
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_ant_genome_db_bowtie2_clean_2.fastq ): 99334485.0
+Total reads after merging results from multiple databases ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_1.fastq ): 99157022.0
+Total reads after merging results from multiple databases ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_2.fastq ): 99157022.0
+Running bowtie2 ... 
+Running bowtie2 ... 
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_1_Homo_sapiens_bowtie2_clean.fastq ): 26993457.0
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_1_ant_genome_db_bowtie2_clean.fastq ): 27044191.0
+Total reads after merging results from multiple databases ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_1.fastq ): 26957648.0
+Running bowtie2 ... 
+Running bowtie2 ... 
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_2_Homo_sapiens_bowtie2_clean.fastq ): 2749264.0
+Total reads after removing those found in reference database ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_2_ant_genome_db_bowtie2_clean.fastq ): 2754115.0
+Total reads after merging results from multiple databases ( /scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_2.fastq ): 2743614.0
+
+Final output files created: 
+/scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_1.fastq
+/scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_paired_2.fastq
+/scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_1.fastq
+/scratch/dag332/kneaddata/kneaddata_output/JRKD001_S1_L001_R1_001_kneaddata_unmatched_2.fastq
+
