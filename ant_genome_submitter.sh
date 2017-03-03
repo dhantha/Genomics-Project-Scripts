@@ -19,17 +19,15 @@ module load gcc/4.8.1
 module load bowtie2/2.2.5
 
 USERNAME=dag332
-SEQS=/home/$USERNAME/Bio/Project/genomes/ant_genome/combined_ants.fasta
+SEQS=/home/$USERNAME/Bio/Project/genomes/ant_genome/combined_ants_full.fasta
 
-SCRATCH=/scratch/$USERNAME/ant_genome/
+SCRATCH=/scratch/$USERNAME/ant_genome
 
 mkdir -p $SCRATCH
 
 OUT=$SCRATCH/ant_genome_db
 
 cp $SEQS $SCRATCH
-
-# build the ant database
 
 bowtie2-build $SEQS $OUT
 
