@@ -4,9 +4,9 @@
 #$ -M dag332@drexel.edu
 #$ -l h_rt=24:00:00
 #$ -P rosenclassPrj
-#$ -pe shm 24
-#$ -l h_vmem=8G
-#$ -l mem_free=6G
+#$ -pe shm 64
+#$ -l h_vmem=16G
+#$ -l mem_free=12G
 #$ -q all.q 
 
 . /etc/profile.d/modules.sh
@@ -17,16 +17,17 @@ module load gcc/4.8.1
 
 USERNAME=dag332
 SEQ=/scratch/$USERNAME/data
-NR=/home/$USERNAME/software/diamond_data/nr.dmnd
+NR=/scratch/$USERNAME/nr
 OUT=/scratch/$USERNAME/diamond
 ##OUT=/scratch/$USERNAME/matched.m8
 DIAMOND=/home/dag332/software/diamond
-DATA="JRKD001_S1_L001_R1_001 JRKD001_S1_L001_R2_001 JRKD001_S2_L001_R1_001 JRKD001_S2_L001_R2_001 JRKD001_S3_L001_R1_001 JRKD001_S3_L001_R2_001 JRKD001_S4_L001_R1_001 JRKD001_S4_L001_R2_001 JRKD001_S5_L001_R1_001 JRKD001_S5_L001_R2_001"
+TEMP=/scratch/$USERNAME/temp
+DATA="JRKD001_S1_L001_R1_001 JRKD001_S1_L001_R2_001 JRKD002_S2_L001_R1_001 JRKD002_S2_L001_R2_001 JRKD003_S3_L001_R1_001"
 
 
 for d in ${DATA}
 do
-	$DIAMOND blastx -d $NR -q $SEQ/${d}.fastq -a $OUT/${d} -t /tmp/
+	$DIAMOND blastx -d $NR -q $SEQ/${d}.fastq -a $OUT/${d} -t $TEMP --threads 64
 done
 
 

@@ -40,7 +40,7 @@ mkdir -p $OUT
 
 ##for srr in ${SRRS[@]}
 ##do
-$MP2 --nproc 24 $SEQS1,$SEQS2 --input_type fastq --mpa_pkl $MP2DB --bowtie2_exe $BT2 --bowtie2db $BT2DB --bowtie2out $SCRATCH/sample1.bowtie2.bz2 -o $SCRATCH/sample1_profile.txt
+$MP2 --nproc 24 $SEQS1,$SEQS2 --input_type fastq --mpa_pkl $MP2DB --bowtie2_exe $BT2 --bowtie2db $BT2DB --bowtie2out $SCRATCH/sample1.bowtie2.bz2 --tax_lev 'g' -o $SCRATCH/sample1_profile.txt
 ##done
 
 ##$MMT  $SCRATCH/*_profile.txt > $OUT/merged_table.txt
