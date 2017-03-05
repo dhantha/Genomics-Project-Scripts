@@ -34,7 +34,7 @@ for d in ${DATA}
 do
 	THIS_DATA=$SEQ/${d}.fastq
 	THIS_OUT=$OUT_DIR/${d}
-	diamond blastx -d $NR -q $THIS_DATA -a $THIS_OUT -t $TMP -v --block-size 16.0 --index-chunks 2
+	diamond blastx -d $NR -q $THIS_DATA -a $THIS_OUT -v --block-size 16.0 --index-chunks 2
 	printf "blastx done with ${d}, $(date), $(now)\n"
 done
 
