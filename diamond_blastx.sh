@@ -16,24 +16,28 @@ module load sge/univa
 module load gcc/4.8.1
 
 USERNAME=dag332
-SEQ=/scratch/$USERNAME/data
+SEQ=/scratch/$USERNAME/kneaddata/kneaddata_output/pair1
 NR=/scratch/$USERNAME/nr
 OUT=/scratch/$USERNAME/diamond
 ##OUT=/scratch/$USERNAME/matched.m8
 DIAMOND=/home/dag332/software/diamond
 TEMP=/scratch/$USERNAME/temp
-DATA="JRKD001_S1_L001_R1_001 JRKD001_S1_L001_R2_001 JRKD002_S2_L001_R1_001 JRKD002_S2_L001_R2_001 JRKD003_S3_L001_R1_001"
+##DATA="JRKD001_S1_L001_R1_001 JRKD001_S1_L001_R2_001 JRKD002_S2_L001_R1_001 JRKD002_S2_L001_R2_001 JRKD003_S3_L001_R1_001"
+##DATA="JRKD001_S1_L001_R1_001_kneaddata_paired_1 JRKD001_S1_L001_R1_001_kneaddata_paired_2"
+DATA=/scratch/$USERNAME/sample.fastq
+
+$DIAMOND blastx -d $NR -q $DATA -a $OUT/sample -t $TEMP --threads 64
 
 
-for d in ${DATA}
-do
-	$DIAMOND blastx -d $NR -q $SEQ/${d}.fastq -a $OUT/${d} -t $TEMP --threads 64
-done
+##for d in ${DATA}
+##do
+##	$DIAMOND blastx -d $NR -q $SEQ/${d}.fastq -a $OUT/${d} -t $TEMP --threads 64
+##done
 
 
-for d in ${DATA}
-do
-	$DIAMOND view -a $OUT/${d}.daa -o $OUT/${d}.m8
-done
+##for d in ${DATA}
+##do
+##	$DIAMOND view -a $OUT/${d}.daa -o $OUT/${d}.m8
+##done
 
 exit
