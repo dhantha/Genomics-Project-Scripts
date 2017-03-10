@@ -20,19 +20,20 @@ module load python/2.7-current
 export PATH=~/.local/bin/:$PATH
 
 USERNAME=dag332
-SEQ1=/home/$USERNAME/Bio/Project/Data/JRKD001_S1_L001_R1_001.fastq
-SEQ2=/home/$USERNAME/Bio/Project/Data/JRKD001_S1_L001_R2_001.fastq
-DATABASE1=/home/$USERNAME/Bio/Project/genomes/ant_genome/ant_genome_db
+SCRATCH=/scratch/$USERNAME
+SEQ1=$SCRATCH/data/JRKD001_S1_L001_R1_001.fastq
+SEQ2=$SCRATCH/data/JRKD001_S1_L001_R2_001.fastq
+DATABASE1=$SCRATCH/ant_genome/ant_genome_db
 DATABASE2=/home/$USERNAME/Bio/Project/genomes/human_genome/Homo_sapiens_Bowtie2_v0.1/Homo_sapiens
-OUT=/home/$USERNAME/Bio/Project/kneaddata_output/ant_db_1
-SCRATCH=/scratch/$USERNAME/kneaddata/
+OUT=$SCRATCH/kneaddata/kneaddata_output/pair1
+FASTQC=$SCRATCH/kneaddata/kneaddata_output/fastqc/pair1
 
-mkdir -p $SCRATCH
+##mkdir -p $SCRATCH
 
-cp $SEQ1 $SCRATCH
-cp $SEQ2 $SCRATCH
-#cp $DATABASE $SCRATCH
+##cp $SEQ1 $SCRATCH
+##cp $SEQ2 $SCRATCH
+##cp $DATABASE $SCRATCH
 
-kneaddata --input $SCRATCH/JRKD001_S1_L001_R1_001.fastq --input $SCRATCH/JRKD001_S1_L001_R2_001.fastq -db $DATABASE1 -db $DATABASE2 --output $SCRATCH/kneaddata_output --threads 24
+kneaddata --input $SEQ1 --input $SEQ2 -db $DATABASE1 -db $DATABASE2 --output $OUT --fastqc $FASTQC --threads 24
 
 exit
