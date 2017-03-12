@@ -1,0 +1,34 @@
+idba -r /scratch/fx28/idba_in/JRKD003_S3_L001.fasta -o /scratch/fx28/idba_out_b2/pair3 --num_threads 16
+number of threads 16
+reads 73045178
+long reads 0
+extra reads 0
+read_length 151
+kmer 20
+kmers 236623836 240356389
+merge bubble 469409
+contigs: 1924960 n50: 396 max: 5918 mean: 108 total length: 209429922 n80: 97
+aligned 25937072 reads
+confirmed bases: 113651565 correct reads: 15986526 bases: 4099605
+kmer 30
+kmers 236434122 238463898
+merge bubble 69140
+contigs: 496833 n50: 2749 max: 42050 mean: 408 total length: 202861917 n80: 898
+aligned 47950194 reads
+confirmed bases: 171853118 correct reads: 37998407 bases: 5161475
+kmer 40
+kmers 241024822 242468486
+merge bubble 12225
+contigs: 310211 n50: 4358 max: 84510 mean: 654 total length: 202980940 n80: 1528
+aligned 53585840 reads
+confirmed bases: 179209712 correct reads: 44500350 bases: 1616507
+kmer 50
+kmers 242450196 243571723
+merge bubble 6302
+contigs: 362844 n50: 3984 max: 91890 mean: 584 total length: 212152662 n80: 1243
+reads 73045178
+aligned 55976534 reads
+distance mean 273.802 sd 60.7775
+expected coverage 0.312195
+edgs 22347
+contigs: 341015 n50: 5880 max: 148713 mean: 616 total length: 210287306 n80: 1828
