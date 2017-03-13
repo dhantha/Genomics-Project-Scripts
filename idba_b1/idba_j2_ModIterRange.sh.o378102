@@ -1,0 +1,16 @@
+idba -r /scratch/fx28/idba_in/JRKD003_S3_L001.fasta -o /scratch/fx28/idba_out_b2/pair3_ModItRg --num_threads 16 --mink 40 --step 40 --maxk 200
+number of threads 16
+reads 73045178
+long reads 0
+extra reads 0
+read_length 151
+kmer 40
+kmers 272100659 273398717
+merge bubble 290806
+contigs: 310330 n50: 4314 max: 84510 mean: 655 total length: 203541457 n80: 1490
+aligned 53345243 reads
+confirmed bases: 179558481 correct reads: 44061197 bases: 10586323
+kmer 80
+kmers 242849847 243158502
+merge bubble 12113
+contigs: 103044 n50: 9349 max: 210216 mean: 1956 total length: 201655017 n80: 3561
