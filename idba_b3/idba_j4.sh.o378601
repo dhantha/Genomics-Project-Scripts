@@ -1,0 +1,40 @@
+idba -r /scratch/fx28/idba_in/JRKD006_S5_L001.fasta -o /scratch/fx28/idba_out_b3/pair5 --num_threads 16 --mink 20 --maxk 100 --step 20
+number of threads 16
+reads 71988268
+long reads 0
+extra reads 0
+read_length 151
+kmer 20
+kmers 269808345 274287992
+merge bubble 874033
+contigs: 2340858 n50: 322 max: 6199 mean: 95 total length: 222960575 n80: 67
+aligned 31087465 reads
+confirmed bases: 108601552 correct reads: 19718148 bases: 8228079
+kmer 40
+kmers 263154360 264893663
+merge bubble 169258
+contigs: 296518 n50: 4778 max: 107125 mean: 687 total length: 203770608 n80: 1719
+aligned 55058044 reads
+confirmed bases: 181311344 correct reads: 48128395 bases: 11070559
+kmer 60
+kmers 251197624 251750667
+merge bubble 21952
+contigs: 147093 n50: 8480 max: 261073 mean: 1369 total length: 201403915 n80: 3354
+aligned 57514537 reads
+confirmed bases: 185954434 correct reads: 50030000 bases: 846640
+kmer 80
+kmers 237170108 237544852
+merge bubble 10999
+contigs: 92874 n50: 10675 max: 315853 mean: 2152 total length: 199875619 n80: 4385
+aligned 59816961 reads
+confirmed bases: 187526077 correct reads: 50653238 bases: 366924
+kmer 100
+kmers 219651082 219775778
+merge bubble 5564
+contigs: 125961 n50: 8662 max: 400131 mean: 1640 total length: 206599071 n80: 3236
+reads 71988268
+aligned 58557169 reads
+distance mean 309.096 sd 79.9241
+expected coverage 0.310855
+edgs 17377
+contigs: 109597 n50: 17061 max: 620433 mean: 1871 total length: 205147078 n80: 6307
