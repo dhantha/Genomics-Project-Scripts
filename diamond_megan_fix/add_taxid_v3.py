@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-# Feiyang XUe
 # this script is designed for adding tax id to diamond output in order for MEGAN to reconize
 # this works by lookup accession number (without version number)
 # the map for this look up is obtained from ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/
-# the sorted map can be obtained by sort. see the other bash script or readme file for details
+# the sorted map can be obtained by cat and pipe to sort 
 
 import re, sys, time, argparse, logging, bisect
 
@@ -73,14 +72,14 @@ for data in args.data:
             logging.warning('data accession has more than 2 dots (%d): %s\n' % (line_count, line.strip()))
             accession_nover = accession_ls[0:-1].join('.').strip()
         else:
-            logging.warning('data accession has no dot: %s\n' % ls[1])
-            accession_nover = accession_ls.strip()
+            logging.warning('data accession has no dot: %s\n' % line)
+            accession_nover = accession_ls[0].strip()
         idx = bisect.bisect(lookup_keys, accession_nover) -1
         if lookup_keys[idx] == accession_nover:
             taxid = lookup_vals[idx]
             fout.write('%s\t%d\n' % (line.strip(), taxid))
         else:
-            logging.warning('no exact match for %s ; the closest one is %s' % (accession_nover, ookup_keys[idx]))
+            logging.warning('no exact match for %s ; the closest one is %s' % (accession_nover, lookup_keys[idx]))
             fout.write(line)
     logging.info('done populating %s' % fout.name)
     fout.close()

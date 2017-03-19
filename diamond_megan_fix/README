@@ -2,11 +2,12 @@ the scirpt is used for appending tax id to diamond output
 diamond output should be in .m8 (tab) format
 
 the script works by looking up tax id with accession number
-a mapping file can be obtained from ncbi website (prot.accession2tax)
+a mapping file can be obtained from ncbi website (3 files ending with .accession2tax)
 the mapping file should be sorted in order to perform binary search
 note that locale matters as it could affect the order between lettters and underscore
 ("_" before "A" or "_" after "A"?)
 
 example:
-python add_taxid_v3.py --map prot.accession2taxid.sorted ./diamond_out/*.m8
+python add_taxid_v3.py --map accession2taxid.sorted ./diamond_out/*.m8
+find -name "*.m8" | xargs python add_taxid_v3.py --map accession2taxid.sorted
 
