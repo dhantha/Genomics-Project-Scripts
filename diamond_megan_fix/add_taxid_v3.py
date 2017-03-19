@@ -35,8 +35,6 @@ for line in args.map:
     if (len(ls) == 4) and ls[2].isdigit():
         taxid = int(ls[2])
         accession = ls[0].strip()
-        if taxid == last_taxid:
-            continue
         if accession == last_accession:
             assert (taxid == last_taxid), line
             continue
@@ -63,20 +61,26 @@ for data in args.data:
     logging.info('start lookup for %s' % data.name)
     path_out = data.name + args.out_suffix
     fout = open(path_out, 'w')
+    line_count = 0
     for line in data:
+        line_count += 1
         ls = line.split('\t')
         accession_ls = ls[1].split('.')
         if len(accession_ls) == 2:
             accession_nover = accession_ls[0].strip()
         elif len(accession_ls) > 2:
-            logging.warning('data accession has more than 2 dots: %s\n' % ls[1])
+            logging.warning('data accession has more than 2 dots (%d): %s\n' % (line_count, line.strip()))
             accession_nover = accession_ls[0:-1].join('.').strip()
         else:
             logging.warning('data accession has no dot: %s\n' % ls[1])
             accession_nover = accession_ls.strip()
-        idx = bisect.bisect(lookup_keys, accession_nover)-1
-        taxid = lookup_vals[idx]
-        fout.write('%s\t%d\n' % (line.strip(), taxid))
+        idx = bisect.bisect(lookup_keys, accession_nover) -1
+        if lookup_keys[idx] == accession_nover:
+            taxid = lookup_vals[idx]
+            fout.write('%s\t%d\n' % (line.strip(), taxid))
+        else:
+            logging.warning('no exact match for %s ; the closest one is %s' % (accession_nover, ookup_keys[idx]))
+            fout.write(line)
     logging.info('done populating %s' % fout.name)
     fout.close()
 
