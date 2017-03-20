@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Feiyang Xue, xfy1111@gmail.com
 # this script is designed for adding tax id to diamond output in order for MEGAN to reconize
 # this works by lookup accession number (without version number)
 # the map for this look up is obtained from ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/
@@ -52,9 +51,12 @@ def add_from_temp_map(acc, line, tmp_map, qout):
         qout.put(line.strip() + '\n')
 
 def keep_recents(recents):
+    rm_list = []
     for n, t in recents.iteritems():
-        if (time.time() - t) > 10:
-            del recents[n]
+        if (not t[0].is_alive()) or ((time.time() - t[1]) > 10):
+            rm_list.append(n)
+    for n in rm_list:
+        del recents[n]
     
 def query_firer(tq, td, temp_map, qout):
     period = 0.35
@@ -73,7 +75,7 @@ def query_firer(tq, td, temp_map, qout):
             last_check = time.time()
         if t.name not in recents:
             td['count']+=1
-            recents[t.name] = time.time()
+            recents[t.name] = (t, time.time())
             t.start()
             tq.task_done()
             end = time.time()
@@ -82,6 +84,7 @@ def query_firer(tq, td, temp_map, qout):
                 time.sleep(period - duration)
         else:
             # put back to queue
+            logging.debug('put %s back to queue to prevent double click' % t.name)
             tq.put((t,line))
             tq.task_done()
 
@@ -93,7 +96,6 @@ def write_output(f, qout):
         f.write(line)
         qout.task_done()
     logging.debug('%d lines written from queue' % count)
-    gc.collect()
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--map', type=argparse.FileType('r'),
@@ -146,8 +148,8 @@ for line in args.map:
         last_accession = accession
     else:
         logging.warning('map line not reconized and skipped: %s\n' % line.strip())
+args.map.close()
 logging.info('map finished loading')
-gc.collect()
 
 key_size = sys.getsizeof(lookup_keys)
 val_size = sys.getsizeof(lookup_vals)
@@ -163,6 +165,7 @@ tqf.daemon = True
 tqf.start()
 
 for data in args.data:
+    gc.collect()
     logging.info('start lookup for %s' % data.name)
     path_out = data.name + args.out_suffix
     fout = open(path_out, 'w')
@@ -206,7 +209,7 @@ for data in args.data:
     logging.info('waiting for query threads to be executed')
     if (not tq.empty()):
         tq.join()
-        time.sleep(12)
+        time.sleep(10)
     write_output(fout, qout)
     logging.info('%d threads were started for no-matches' % tqf_td['count'])
     logging.info('%d accs were looked up from temp map' % tqf_td['cache_count'])
