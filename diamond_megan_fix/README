@@ -13,6 +13,12 @@ those newly looked up accession to taxon id mapping will be written to a seperat
 (importing of this seperate mapping file is not yet supported)
 if internet connection is unreliable, please disable online lookup by the arg --offline
 
+Assumptions:
+  in the m8 file, the majority of accession id can be found in acc2tax map
+  line order in m8 does NOT matter
+  if accession has "|" in it, look up with the characters after "|"
+  if accession appears to be "????_??" where the laster 2 characters are the same, remove the last character
+
 functionality of this script has been tested with diamond version 0.8.36 and MEGAN 5
 (It may not work with MEGAN 6)
 as of 03/20/2017: 
