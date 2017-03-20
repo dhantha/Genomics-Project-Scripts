@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Feiyang Xue, xfy1111@gmail.com
 # this script is designed for adding tax id to diamond output in order for MEGAN to reconize
 # this works by lookup accession number (without version number)
 # the map for this look up is obtained from ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/
