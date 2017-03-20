@@ -1,11 +1,24 @@
-the scirpt is used for appending tax id to diamond output
+the scirpt is used for appending tax id to diamond output for protein
 diamond output should be in .m8 (tab) format
 
-the script works by looking up tax id with accession number
+the script works by looking up tax id with accession number (without version number)
 a mapping file can be obtained from ncbi website (3 files ending with .accession2tax)
-the mapping file should be sorted in order to perform binary search
+the mapping file should be combined and sorted in order to perform binary search
 note that locale matters as it could affect the order between lettters and underscore
 ("_" before "A" or "_" after "A"?)
+
+for accession that cannot be found in these dump, the script will now attempt to lookup on NCBI website
+lookup frequency is limited in order to prevent IP from being banned 
+those newly looked up accession to taxon id mapping will be written to a seperate file
+(importing of this seperate mapping file is not yet supported)
+if internet connection is unreliable, please disable online lookup by the arg --offline
+
+functionality of this script has been tested with diamond version 0.8.36 and MEGAN 5
+(It may not work with MEGAN 6)
+as of 03/20/2017: 
+  the script is mainly single-threaded
+  memory usage is about 38 GB
+  the mapping file has 435808789 entries
 
 example:
 python add_taxid_v3.py --map accession2taxid.sorted ./diamond_out/*.m8
