@@ -1,0 +1,53 @@
+/home/fx28/quast-4.4/quast.py ./pair5/scaffold.fa
+
+Version: 4.4, b8a1faf
+
+System information:
+  OS: Linux-2.6.32-358.el6.x86_64-x86_64-with-redhat-6.5-Santiago (linux_64)
+  Python version: 2.6.6
+  CPUs number: 16
+
+Started: 2017-03-14 18:17:13
+
+Logging to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/quast.log
+NOTICE: Maximum number of threads is set to 4 (use --threads option to set it manually)
+
+CWD: /lustre/scratch/fx28/idba_out_b3
+Main parameters: 
+  Threads: 4, minimum contig length: 500, ambiguity: one, threshold for extensive misassembly size: 1000
+
+WARNING: Can't draw plots: matplotlib version is old! Please use matplotlib version 1.1 or higher.
+
+Contigs:
+  Pre-processing...
+  ./pair5/scaffold.fa ==> scaffold
+
+2017-03-14 18:17:25
+Running Basic statistics processor...
+  Contig files: 
+    scaffold
+  Calculating N50 and L50...
+    scaffold, N50 = 18541, L50 = 2998, Total length = 190014578, GC % = 43.69, # N's per 100 kbp =  1.68
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding option to enable it.
+
+2017-03-14 18:17:39
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating Icarus viewers...
+Done
+
+2017-03-14 18:17:44
+RESULTS:
+  Text versions of total report are saved to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) saved to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/report.html
+  Icarus (contig browser) is saved to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/icarus.html
+  Log saved to /lustre/scratch/fx28/idba_out_b3/quast_results/results_2017_03_14_18_17_13/quast.log
+
+Finished: 2017-03-14 18:17:44
+Elapsed time: 0:00:31.041431
+NOTICEs: 2; WARNINGs: 1; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

@@ -4,9 +4,9 @@
 #$ -M dag332@drexel.edu
 #$ -l h_rt=24:00:00
 #$ -P rosenclassPrj
-#$ -pe shm 24
-#$ -l h_vmem=8G
-#$ -l mem_free=6G
+#$ -pe shm 4
+#$ -l h_vmem=64G
+#$ -l mem_free=60G
 #$ -q all.q 
 
 . /etc/profile.d/modules.sh
@@ -23,13 +23,13 @@ module load bowtie2/2.2.5
 USERNAME=dag332
 SCRATCH=/scratch/$USERNAME/humann
 INPUT=/scratch/$USERNAME/kneaddata/kneaddata_output/pair5/JRKD006_S5_L001_R1_001_kneaddata_paired_2.fastq
-DB=/home/$USERNAME/software/humann2/chocophlan/chocophlan/
-PROTEIN=/home/dag332/software/humann2/humann2_database_downloads/uniref
+DB=/scratch/$USERNAME/humann/chocophlan
+PROTEIN=/scratch/$USERNAME/humann/uniref
 OUT=$SCRATCH/file10
 
 export PATH=~/.local/bin/:$PATH
 export PATH=~/software/metaphlan2/metaphlan2:$PATH
 
-humann2 --input $INPUT --output $OUT --nucleotide-database $DB --protein-database $PROTEIN --threads 24
+humann2 --input $INPUT --output $OUT --nucleotide-database $DB --protein-database $PROTEIN --threads 4 --verbose
 
 exit

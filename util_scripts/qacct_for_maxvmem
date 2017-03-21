@@ -1,0 +1,2 @@
+#!/bin/sh
+find -maxdepth 1 -name "*.sh.o*" | grep -o "[0-9]*$" | xargs -L 1 qacct -j | grep -o "^maxvmem[ ]*[0-9\.]*G$"
