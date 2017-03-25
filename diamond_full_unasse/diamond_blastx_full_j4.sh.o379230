@@ -1,0 +1,205 @@
+diamond version 0.8.36
+diamond blastx -d /scratch/fx28/diamond_db/nr.dmnd -q /scratch/dag332/kneaddata/kneaddata_output/pair2/JRKD002_S2_L001_R1_001_kneaddata_paired_1.fastq -a /scratch/fx28/diamond_out/pair2/JRKD002_S2_L001_R1_001_kneaddata_paired_1 -v --block-size 18.0 --index-chunks 2
+
+starting everything, Sat Mar 18 02:49:23 EDT 2017, 1489819763
+diamond v0.8.36.98 | by Benjamin Buchfink <buchfink@gmail.com>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 64
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+SEG masking = 1
+SSSE3 enabled.
+Reduction: [RNDQEK][C][G][H][M][F][Y][ILV][W][P][AST]
+Seed frequency SD: 50
+Shape configuration: 111101011101111,111011001100101111,1111001001010001001111,111100101000010010010111
+#Target sequences to report alignments for: 25
+Temporary directory: /scratch/fx28/diamond_out/pair2
+Opening the database...  [0.028725s]
+Reference = /scratch/fx28/diamond_db/nr.dmnd
+Sequences = 115041592
+Letters = 42171959272
+Block size = 18000000000
+Opening the input file...  [0.032483s]
+Opening the output file...  [0.001095s]
+Loading query sequences...  [251.217s]
+Sequences = 272473590, letters = 13470250856, average length = 49
+Running complexity filter...  [499.038s]
+Building query histograms...  [29.5818s]
+Allocating buffers...  [0.011844s]
+Loading reference sequences...  [80.1638s]
+Building reference histograms...  [73.5498s]
+Allocating buffers...  [0.005085s]
+Initializing temporary storage...  [0.725979s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 0.
+Building reference index...  [66.6185s]
+Building query index...  [26.0345s]
+Building seed filter...  [7.6843s]
+Searching alignments...  [415.769s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 1.
+Building reference index...  [61.4205s]
+Building query index...  [23.5874s]
+Building seed filter...  [7.52464s]
+Searching alignments...  [346.729s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 0.
+Building reference index...  [61.2738s]
+Building query index...  [21.6972s]
+Building seed filter...  [7.14377s]
+Searching alignments...  [312.613s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 1.
+Building reference index...  [61.0928s]
+Building query index...  [21.6421s]
+Building seed filter...  [7.07685s]
+Searching alignments...  [282.77s]
+Processing query chunk 0, reference chunk 0, shape 2, index chunk 0.
+Building reference index...  [59.3522s]
+Building query index...  [17.5427s]
+Building seed filter...  [6.74812s]
+Searching alignments...  [245.359s]
+Processing query chunk 0, reference chunk 0, shape 2, index chunk 1.
+Building reference index...  [58.9737s]
+Building query index...  [17.5315s]
+Building seed filter...  [6.71901s]
+Searching alignments...  [208.88s]
+Processing query chunk 0, reference chunk 0, shape 3, index chunk 0.
+Building reference index...  [58.5242s]
+Building query index...  [15.905s]
+Building seed filter...  [6.54919s]
+Searching alignments...  [193.807s]
+Processing query chunk 0, reference chunk 0, shape 3, index chunk 1.
+Building reference index...  [58.4834s]
+Building query index...  [15.7999s]
+Building seed filter...  [6.59074s]
+Searching alignments...  [181.951s]
+Deallocating buffers...  [0.483835s]
+Opening temporary output file...  [0.002026s]
+Computing alignments...  [7129.15s]
+Deallocating reference...  [1.48476s]
+Loading reference sequences...  [75.1743s]
+Building reference histograms...  [74.0374s]
+Allocating buffers...  [0.006004s]
+Initializing temporary storage...  [0.725481s]
+Processing query chunk 0, reference chunk 1, shape 0, index chunk 0.
+Building reference index...  [97.4717s]
+Building query index...  [41.1954s]
+Building seed filter...  [10.4413s]
+Searching alignments...  [428.082s]
+Processing query chunk 0, reference chunk 1, shape 0, index chunk 1.
+Building reference index...  [69.5722s]
+Building query index...  [38.8407s]
+Building seed filter...  [7.58787s]
+Searching alignments...  [352.138s]
+Processing query chunk 0, reference chunk 1, shape 1, index chunk 0.
+Building reference index...  [69.0205s]
+Building query index...  [34.3207s]
+Building seed filter...  [7.11511s]
+Searching alignments...  [321.438s]
+Processing query chunk 0, reference chunk 1, shape 1, index chunk 1.
+Building reference index...  [68.7504s]
+Building query index...  [34.2252s]
+Building seed filter...  [7.12672s]
+Searching alignments...  [286.421s]
+Processing query chunk 0, reference chunk 1, shape 2, index chunk 0.
+Building reference index...  [68.0679s]
+Building query index...  [28.7603s]
+Building seed filter...  [6.88505s]
+Searching alignments...  [234.45s]
+Processing query chunk 0, reference chunk 1, shape 2, index chunk 1.
+Building reference index...  [67.3878s]
+Building query index...  [28.6244s]
+Building seed filter...  [7.227s]
+Searching alignments...  [215.917s]
+Processing query chunk 0, reference chunk 1, shape 3, index chunk 0.
+Building reference index...  [67.2261s]
+Building query index...  [26.1655s]
+Building seed filter...  [6.86515s]
+Searching alignments...  [194.652s]
+Processing query chunk 0, reference chunk 1, shape 3, index chunk 1.
+Building reference index...  [67.5113s]
+Building query index...  [25.8977s]
+Building seed filter...  [6.69769s]
+Searching alignments...  [183.051s]
+Deallocating buffers...  [0.457455s]
+Opening temporary output file...  [0.001595s]
+Computing alignments...  [6372.06s]
+Deallocating reference...  [2.72474s]
+Loading reference sequences...  [20.357s]
+Building reference histograms...  [13.532s]
+Allocating buffers...  [0.006035s]
+Initializing temporary storage...  [0.713017s]
+Processing query chunk 0, reference chunk 2, shape 0, index chunk 0.
+Building reference index...  [14.8518s]
+Building query index...  [38.808s]
+Building seed filter...  [4.67834s]
+Searching alignments...  [148.309s]
+Processing query chunk 0, reference chunk 2, shape 0, index chunk 1.
+Building reference index...  [14.5043s]
+Building query index...  [38.6566s]
+Building seed filter...  [4.75486s]
+Searching alignments...  [127.251s]
+Processing query chunk 0, reference chunk 2, shape 1, index chunk 0.
+Building reference index...  [14.3237s]
+Building query index...  [34.4919s]
+Building seed filter...  [4.32122s]
+Searching alignments...  [113.018s]
+Processing query chunk 0, reference chunk 2, shape 1, index chunk 1.
+Building reference index...  [14.2685s]
+Building query index...  [34.3308s]
+Building seed filter...  [4.30633s]
+Searching alignments...  [100.669s]
+Processing query chunk 0, reference chunk 2, shape 2, index chunk 0.
+Building reference index...  [14.1046s]
+Building query index...  [29.0272s]
+Building seed filter...  [3.87645s]
+Searching alignments...  [84.7967s]
+Processing query chunk 0, reference chunk 2, shape 2, index chunk 1.
+Building reference index...  [14.2106s]
+Building query index...  [28.8693s]
+Building seed filter...  [3.7897s]
+Searching alignments...  [76.7588s]
+Processing query chunk 0, reference chunk 2, shape 3, index chunk 0.
+Building reference index...  [14.2266s]
+Building query index...  [26.2748s]
+Building seed filter...  [3.62971s]
+Searching alignments...  [70.154s]
+Processing query chunk 0, reference chunk 2, shape 3, index chunk 1.
+Building reference index...  [14.0329s]
+Building query index...  [26.0899s]
+Building seed filter...  [3.57811s]
+Searching alignments...  [65.1905s]
+Deallocating buffers...  [0.150594s]
+Opening temporary output file...  [0.001665s]
+Computing alignments...  [2001s]
+Deallocating reference...  [0.054944s]
+Loading reference sequences...  [0.000658s]
+Deallocating buffers...  [0.316555s]
+Joining output blocks...  [172.59s]
+Deallocating queries...  [0.139258s]
+Loading query sequences...  [0.000101s]
+Closing the input file...  [0.000342s]
+Closing the output file...  [0.761509s]
+Closing the database file...  [0.001305s]
+Total time = 23989s
+Mapping time = 23989s
+Hits (filter stage 0) = 3625383591953
+Hits (filter stage 1) = 151493251952 (4.17868 %)
+Hits (filter stage x) = 151493251952 (100 %)
+Hits (filter stage 2) = 122983957640 (81.1811 %)
+Hits (filter stage 3) = 34544002839 (28.0882 %)
+Hits (filter stage 4) = 16582943920 (48.0053 %)
+Temporary disk space used: 90.7538 GB
+Reported 170396122 pairwise alignments, 170396122 HSSPs.
+8505272 queries aligned.
+
+blastx done with , Sat Mar 18 09:29:13 EDT 2017, 1489843753
+diamond v0.8.36.98 | by Benjamin Buchfink <buchfink@gmail.com>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 64
+Scoring parameters: (Matrix=custom Lambda=0.267 K=0.041 Penalties=11/1)
+Build version = 98
+DB sequences = 115041592
+DB sequences used = 3507437
+DB letters = 42171959272
+Generating output...  [245.537s]
+
+view done with , Sat Mar 18 09:33:20 EDT 2017, 1489844000
