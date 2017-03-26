@@ -70,6 +70,8 @@ Reference genomes to build the custom databse can be downloaded from the NCBI or
 bowtie2-build /path/to/input.fasta -o /path/to/output/db 
 ```
 
+## Unassembled data pipeline
+
 ## MetaPhlAn2
 
 MetaPhlAn is a computational tool for profiling the composition of microbial communities (Bacteria, Archaea, Eukaryotes and Viruses) from metagenomic shotgun sequencing data with species level resolution
@@ -144,9 +146,15 @@ $OUTPUT_DIR/$SAMPLENAME_pathabundance.tsv
 
 Refer to humann2.sh on how to submit a job
 
+## Assembled Data Pipeline
+
 ## IDBA
 IDBA-UD is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
 Source: http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/
+
+## QUAST
+
+
 
 ## BLASTn
 
