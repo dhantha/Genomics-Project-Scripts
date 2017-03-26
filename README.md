@@ -152,8 +152,107 @@ Refer to humann2.sh on how to submit a job
 IDBA-UD is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
 Source: http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/
 
-## QUAST
+dependencies: automake and autoconf
+check if they are installed by the following command
+if no error rises, then they are in place
+if error does show up, you need to install them before building IDBA
+```
+autoconf --help
+automake --help
+```
 
+download and install autoconf, with example of 2.69
+```
+wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+tar -xf autoconf-2.69.tar.gz
+cd autoconf-2.69
+./configure --prefix=$home_local
+make -j
+make install
+cd ..
+```
+
+download and install automake, with example of 1.15
+```
+wget http://ftp.gnu.org/gnu/automake/automake-1.15.tar.gz
+tar -xf automake-1.15.tar.gz
+cd automake-1.15
+./configure --prefix=$home_local
+make -j
+make install
+cd ..
+```
+
+download idba from github
+```
+git clone https://github.com/loneknightpy/idba
+```
+
+build and install idba
+```
+cd idba
+aclocal
+autoconf
+automake --add-missing
+./configure --prefix=$home_local
+make -j
+make install
+cd ..
+```
+
+IDBA usage: fq2fa
+if input is fastq format, use this to convert to fasta format
+if input is pair ended, then use the merge flag
+```
+fq2fa --merge $path_to_input_1.fastq $path_to_input_2.fastq $path_to_output.fasta
+```
+
+if input is pair ended with maximum read length more than 128, 
+then source of IDBA need to modified accordingly
+edit this file in IDBA source:
+src\sequence\short_sequence.h
+line 102 where it has "static const uint32_t kMaxShortSequence = 128;"
+change the numerical value to match the longest read of the input fasta file
+for finding out the longest read length, you can call the following to input file
+```
+idba -l $path_to_input.fasta -o $path_to_a_temp_dir
+```
+then break the process by Ctrl+C once you see something like:
+"read_length 151"
+longest read length is this numerical value PLUS ONE (+1)
+i.e. if it shows as 151, then the longest length is 152
+after the source code is changed, navigate to the idba folder where it was built
+then rebuild and reinstall idba by the following
+```
+make clean
+make -j
+make install
+```
+ 
+use IDBA for pair ended input or non pair ended short reads (read length < 128)
+```
+idba -r $path_to_input_file.fasta -o $path_to_output_directory --num_threads 16 --mink 20 --maxk 100 --step 20
+```
+
+use IDBA for non pair ended long reads (>128)
+note that this does not apply to pair ended long reads. 
+```
+idba -l $path_to_input_file.fasta -o $path_to_output_directory --num_threads 16 --mink 20 --maxk 100 --step 20
+```
+
+## QUAST
+Source: http://bioinf.spbau.ru/en/quast
+
+To install
+```
+wget https://github.com/ablab/quast/archive/quast_4.5.zip
+unzip quast_4.5.zip
+cd quast-quast_4.5
+
+./setup.py install
+
+quast $path_to_idba_output_directory/scaffold.fa
+```
 
 
 ## BLASTn
@@ -210,7 +309,76 @@ sam_len_cov_gc_insert.pl -s samfile -f scaffold.fa
 
 ![Alt text](https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/GC%20Plots/gc.PNG)
 
-## Diamond and Megan
+## Diamond
+To get Diamond
 
+```
+wget https://github.com/bbuchfink/diamond/releases/download/v0.8.36/diamond-linux64.tar.gz
+tar -xf diamond-linux64.tar.gz
+```
+download and extract the latest release executable binary from https://github.com/bbuchfink/diamond/releases
+example with v0.8.36
 
+run diamond
+note that the values of block-size and index-chunks can be adjusted for increase or reduce memory usage
+smaller index-chunks uses more memory, and its minimum is 1
+larger block-size uses more memory
+these 2 arguments can be left blank so it will use default value
+the values in this example leads to memory usage about 200GB
 
+```
+diamond blastx -d $path_to_nr_database -q $path_to_input_file -a $path_to_output_file --block-size 18.0 --index-chunks 2
+```
+## Megan 6
+
+dependencies: java runtime environment (JRE)
+type in the command below. if it returns an error, then JRE needs to be downloaded and installed
+```
+java -version
+```
+
+download: http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+download the one ends with "linux-x64.tar.gz"
+then tar -xf path_to_the_jre.tar.gz
+then navigate to, for example, jre1.8.0_121/bin
+add this path to environment path by "export PATH=$PWD:$PATH"
+
+example with MEGAN 6 community edition
+download the corresponding edition of megan 6 from https://ab.inf.uni-tuebingen.de/software/megan6
+
+navigate to the downloaded file, and install it by calling:
+```
+sh MEGAN_Community_unix_6_7_10.sh
+```
+follow the installation
+start megan by type in:
+```
+MEGAN
+```
+
+## Megan 5 workaround
+note: this should be avoided unless absoutely necessary
+download NCBI accession2taxid dump for protein
+```
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/pdb.accession2taxid.gz
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/dead_prot.accession2taxid.gz
+```
+extract these files
+```
+tar -xf *.accession2taxid.gz
+```
+sort them for binary search
+note the value after -S tells the sort how many memory it's allowed to use
+```
+LC_COLLATE=C sort *.accession2taxid -S 30G > accession2taxid.sorted
+```
+
+use diamond view to convert diamond DAA file to (tab) m8 file
+```
+diamond view -a $path_to_input.daa -o $path_to_output.m8
+```
+run the script to the m8 file
+```
+python add_taxid_v5.py --map $path_to_accession2taxid_dot_sorted $path_to_diamond_output.m8
+```
