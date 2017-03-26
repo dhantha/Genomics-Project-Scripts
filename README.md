@@ -162,6 +162,12 @@ wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_nucl.dmp.gz
 wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
 ```
 
+```
+blastn -task megablast -query $ASSEMBLY -db $BLASTDB/nt -max_target_seqs 1 -outfmt 6 > $ASSEMBLY.megablast.nt
+```
+
+### BLASTn Taxonomic Report
+
 In https://github.com/sujaikumar/assemblage By Sujai Kumar has blastn_taxnomy_report.pl which gives individual taxa for each
 scaffold. 
 ```
@@ -185,13 +191,14 @@ bwa index scaffold.fa
 bwa mem scaffold.fa input_seq1.fastq input_seq2.fastq > samfile
 ```
 
-### To get the length of the coverage
+### BWA summary report
+In https://github.com/sujaikumar/assemblage By Sujai Kumar 
 ```
 sam_len_cov_gc_insert.pl -s samfile -f scaffold.fa
 ```
 
 
-
+## GC Plots
 
 
 
