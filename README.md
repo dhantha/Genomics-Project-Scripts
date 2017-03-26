@@ -17,8 +17,9 @@
 6. IDBA
 7. QUAST
 8. BLASTn
-9. Diamond
-10. Megan 5/6
+9. BWA
+10. Diamond
+11. Megan 5/6
 ``` 
 
 ![Alt text](./Figures/metagenomics_pipeline.png?raw=true "Pipeline")
@@ -139,7 +140,56 @@ $OUTPUT_DIR/$SAMPLENAME_pathcoverage.tsv
 $OUTPUT_DIR/$SAMPLENAME_pathabundance.tsv
 ```
 
+
+
 Refer to humann2.sh on how to submit a job
+
+## IDBA
+IDBA-UD is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
+Source: http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/
+
+## BLASTn
+
+To run a nucleotide blastn first the NCBI nucleotide database must be download and built in the local environmental 
+
+```
+wget ftp://ftp.ncbi.nih.gov/blast/db/nt.??.tar.gz
+```
+
+NCBI taxonomy dumps and unpacked 
+```
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_nucl.dmp.gz
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
+```
+
+In https://github.com/sujaikumar/assemblage By Sujai Kumar has blastn_taxnomy_report.pl which gives individual taxa for each
+scaffold. 
+```
+blast_taxonomy_report.pl \
+    -b $assemblyfile.r10000.megablast.nt \
+    -nodes /path/to/ncbi/taxdmp/nodes.dmp \
+    -names /path/to/ncbi/taxdmp/names.dmp \
+    -gi_taxid_file /path/to/ncbi/taxdmp/gi_taxid_nucl.dmp.gz \
+    -t genus=1 -t order=1 -t family=1 -t superfamily=1 -t kingdom=1 \
+>$assemblyfile.r10000.megablast.nt.taxon
+```
+
+## BWA
+BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome.
+Source: http://bio-bwa.sourceforge.net/bwa.shtml
+
+To run bwa  
+```
+bwa index scaffold.fa
+
+bwa mem scaffold.fa input_seq1.fastq input_seq2.fastq > samfile
+```
+
+### To get the length of the coverage
+```
+sam_len_cov_gc_insert.pl -s samfile -f scaffold.fa
+```
+
 
 
 
