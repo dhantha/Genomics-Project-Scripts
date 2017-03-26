@@ -53,16 +53,18 @@ or single pair input files.
 ```
 kneaddata --input pair1.fastq --input pair2.fastq -db $DATABASE --output $OUT 
 ```
-kneaddata can be run using multiple databases. For help use and refer the kneaddata_submitter.sh to submit jobs
+kneaddata can be run using multiple databases. For help use 
+
 ```
 kneaddata --help
 ``
-
+refer the kneaddata_submitter.sh to submit jobs
 
 ## Create a Database 
 
 Use the bowtie2-build to create a custom database. By creating a custom database allows to filter contaminant sequence properly from the data.
 Reference genomes to build the custom databse can be downloaded from the NCBI or other source 
+
 ```
 bowtie2-build /path/to/input.fasta -o /path/to/output/db 
 ```
