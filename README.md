@@ -3,11 +3,12 @@
 ### This project was done as a part of the final project for ECES-T 480 winter 2017
 
 ## Contributors:
-### 1. Ariana Entezari
-### 2. Dhantha Gunarathna
-### 3. Feiyang Xue
+### Ariana Entezari
+### Dhantha Gunarathna
+### Feiyang Xue
 
-## This project consist of bash scripts to run the following programs 
+## This project consist of bash scripts to run the following programs. Make usre to change username, and other computing 
+resources accordingly 
 ```
 1. FASTQC
 2. Kneaddata
@@ -21,7 +22,42 @@
 10. Megan 5/6
 ``` 
 
-![Alt text](/Figures/metagenomics_pipeline.png?raw=true "Pipeline")
+![Alt text](./Figures/metagenomics_pipeline.png?raw=true "Pipeline")
+
+## Run Kneaddata
+Source: https://bitbucket.org/biobakery/kneaddata/wiki/Home
+
+To install kneaddata
+```
+mkdir -p ~/software/kneaddata
+mkdir -p ~/software/kneaddata/human_genome
+cd ~/software/kneaddata
+
+wget https://pypi.python.org/packages/6d/50/dd20a862b2532a476b4837a2b1fe4f9e8131cf554751adb6fd7186ee33e3/kneaddata-0.5.4.tar.gz
+
+tar zxvf kneaddata-0.5.4.tar.gz
+rm kneaddata-0.5.4.tar.gz
+cd kneaddata-0.5.4
+
+module load python/3.5-current
+python setup.py install --bypass-dependencies-install --user
+
+export PATH=~/.local/bin/:$PATH
+
+kneaddata_database --download human_genome bowtie2 ~/software/kneaddata/human_genome
+```
+
+Kneaddata is a tool designed to perform qulity control in metagenomic and metatranscriptomic data. Kneaddata can be run either pair end
+or single pair input files.
+
+```
+kneaddata --input pair1.fastq --input pair2.fastq -db $DATABASE --output $OUT 
+```
+kneaddata can be run using multiple databases. For help use and refer the kneaddata_submitter.sh to submit jobs
+```
+kneaddata --help
+``
+
 
 ## Create a Database 
 
@@ -30,10 +66,6 @@ Reference genomes to build the custom databse can be downloaded from the NCBI or
 ```
 bowtie2-build /path/to/input.fasta -o /path/to/output/db 
 ```
-
-## Run Kneaddata
-
-Kneaddata 
 
 
 
