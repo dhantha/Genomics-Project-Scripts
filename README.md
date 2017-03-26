@@ -22,7 +22,7 @@
 11. Megan 5/6
 ``` 
 
-![Alt text](./Figures/metagenomics_pipeline.png?raw=true "Pipeline")
+![Alt text](https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/metagenomics%20pipeline.png)
 
 ## Run Kneaddata
 Source: https://bitbucket.org/biobakery/kneaddata/wiki/Home
