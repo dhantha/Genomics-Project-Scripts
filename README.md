@@ -57,7 +57,7 @@ kneaddata can be run using multiple databases. For help use
 
 ```
 kneaddata --help
-``
+```
 refer the kneaddata_submitter.sh to submit jobs
 
 ## Create a Database 
