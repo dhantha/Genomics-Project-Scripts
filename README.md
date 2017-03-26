@@ -208,7 +208,9 @@ sam_len_cov_gc_insert.pl -s samfile -f scaffold.fa
 
 ## GC Plots
 
-![Alt text](https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/GC%20Plots/gc.png)
+![Alt text](https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/GC%20Plots/gc.PNG)
+
+## Diamond and Megan
 
 
 
