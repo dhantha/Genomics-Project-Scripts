@@ -72,6 +72,7 @@ bowtie2-build /path/to/input.fasta -o /path/to/output/db
 ## MetaPhlAn2
 
 MetaPhlAn is a computational tool for profiling the composition of microbial communities (Bacteria, Archaea, Eukaryotes and Viruses) from metagenomic shotgun sequencing data with species level resolution
+
 Source: https://bitbucket.org/biobakery/metaphlan2
 
 To install MetaPhlAn2
@@ -96,6 +97,53 @@ metaphlan2.py metagenome.fastq --input_type fastq > profiled_metagenome.txt
 ```
 MetaPhlAn2 can take either pair end or combined fastq files. Refer to metaphlan2.sh for pair end submit and metaphaln combined for combined fastq. 
 Pair end files can be combines using qiime join_paired_ends.py (http://qiime.org/scripts/join_paired_ends.html)
+
+## HUMAnN2
+Source: https://bitbucket.org/biobakery/humann2/wiki/Home
+
+HUMAnN is a pipeline for efficiently and accurately profiling the presence/absence and abundance of microbial pathways in a community from metagenomic or metatranscriptomic sequencing data
+
+To install humann2
+```
+mkdir -p ~/software/humann2
+mkdir -p ~/software/humann2/chocophlan 
+cd ~/software/humann2
+
+wget https://pypi.python.org/packages/71/70/9c45436b6dab38706826a822411d6386376205d9c9fa53972e2ff3b7dda8/humann2-0.9.9.tar.gz
+
+tar zxvf humann2-0.9.9.tar.gz
+rm humann2-0.9.9.tar.gz
+cd humann2-0.9.9
+
+module load python/3.5-current
+python setup.py install --bypass-dependencies-install --user
+
+humann2_databases --download chocophlan full ~/software/humann2/chocophlan 
+
+export PATH=~/.local/bin/:$PATH
+
+humann2_test
+humann2_test --run-functional-tests-tools
+```
+
+Basic usage of HUMAnN2 
+
+```
+$ humann2 --input $SAMPLE --output $OUTPUT_DIR
+```
+
+Three output files will be created:
+```
+$OUTPUT_DIR/$SAMPLENAME_genefamilies.tsv
+$OUTPUT_DIR/$SAMPLENAME_pathcoverage.tsv
+$OUTPUT_DIR/$SAMPLENAME_pathabundance.tsv
+```
+
+Refer to humann2.sh on how to submit a job
+
+
+
+
 
 
 
