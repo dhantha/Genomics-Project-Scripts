@@ -1,0 +1,224 @@
+add_library('pdf')
+
+
+### Reading in csv file with data
+Data_Table = loadTable("/Users/ariana/Desktop/ECES 480/GC Input/sample2_input.csv")
+
+### Specifying plot location and size
+### You need to plan those before starting the work. I have decided that for this specific dataset, I want 
+### to show coverage from 10^0 to 10^4, 400 pixels per 10x increase (1600 total)
+### and GC contents from 0.1 to 0.8, 200 pixels per 0.1 increase (1400 total) 
+plot_x_start = 200
+plot_x_size = 1400
+plot_x_end = plot_x_start + plot_x_size
+plot_y_start = 100
+plot_y_size = 1600
+plot_y_end = plot_y_start + plot_y_size
+
+### Listing taxa to be highlighted
+Taxon_list = ['Bacillales','Burkholderiales','Clostridiales','Corynebacteriales','Cypriniformes','Enterobacterales','Entomoplasmatales','Eucoccidiorida','Haemosporida','Lactobacillales','Micrococcales','Mycoplasmatales','Propionibacteriales','Saccharomycetales']
+
+### For each taxon from the list above, defining color
+Taxon_colors = {'Bacillales': [128,0,128],
+                'Burkholderiales': [255,0,0],
+                'Clostridiales': [0,128,0],
+                'Corynebacteriales': [202,111,30],
+                'Cypriniformes': [255,255,0],
+                'Enterobacterales': [255,128,64],
+                'Entomoplasmatales': [255,35,246],
+                'Eucoccidiorida': [0,0,128],
+                'Haemosporida':[0,255,255],
+                'Lactobacillales':[0,255,0],
+                'Micrococcales':[19,141,117],
+                'Mycoplasmatales':[0,0,255],
+                'Propionibacteriales':[187,143,206],
+                'Saccharomycetales':[178,186,187]           
+        }
+
+### Function for setting fill color, of contigs or legend
+def SelectColor(taxon, opacity):
+    if taxon in Taxon_list:
+        fill(Taxon_colors[taxon][0],Taxon_colors[taxon][1],Taxon_colors[taxon][2],opacity)
+    else:
+        fill(200,200,200,opacity)
+    return("")
+
+### Need to define log10 for plotting coverage!
+def log10(x):
+    return(log(x)/log(10))
+
+### Function that calculates contig or line position on x scale
+def CalculateX(x):
+    return(plot_x_start + (x-0.1)*2000)
+
+### Function that calculates contig or line position on y scale
+def CalculateY(y):
+    return(plot_y_end - (log10(y)*400))
+
+### Function that calculates the size of contig to be drawn
+def CalculateDiameter(x):
+    return(2 * sqrt(x/100) - 1)
+
+
+
+
+
+#### Defining the size of figure, specifying location of output pdf file
+size(plot_x_end + 400, plot_y_end + 150)
+beginRecord(PDF, "/Users/ariana/Desktop/ECES 480/GC Input/sample2_output.pdf")
+
+### Background fill color - white
+background(255)
+
+
+
+### Drawing grid. First, defining general parameters
+textSize(50)
+textAlign(RIGHT)
+strokeWeight(1)
+stroke(200)
+fill(0)
+
+### Then, drawing x grid lines
+for Cov in [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]:
+    ypos = CalculateY(Cov)
+    line(plot_x_start-20,ypos,plot_x_end,ypos)
+    if Cov < 1:
+        text("%.1f" % Cov, plot_x_start-30, ypos+12)
+    else:
+        text(Cov, plot_x_start-30, ypos+12)
+
+### Then, drawing y grid lines
+for GC in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]:
+    xpos = CalculateX(GC)
+    print(GC, xpos)
+    line(xpos,plot_y_start,xpos,plot_y_end+20)
+    textAlign(CENTER)
+    text("%.1f" % GC, xpos, plot_y_end+50)
+
+### Then, drawing outside frame
+stroke(0)
+strokeWeight(3)
+fill(255,0)
+rect(plot_x_start,plot_y_start,plot_x_size,plot_y_size)
+
+### Finally, axis legends
+# x axis
+fill(0)
+textAlign(CENTER)
+textSize(60)
+text("GC contents", (plot_x_start+plot_x_end)/2, plot_y_end+110)
+# y axis... rotating cavas is such a pain, please add that one using graphic software!
+
+
+
+
+
+############### Setting up a system for extracting coordinates of contigs containing enzymes
+###############  0        1          2      3       4
+#enzyme_list = ['uraH', 'PRHOXNB', 'TIGR03212', 'alc', 'urease','GdhA','GS','GOGAT']
+#enzyme_ctgs = [[],[],[],[],[],[],[],[]]
+
+## Deciding where enzyme names should be plotted... at least temporarily. Later, labels and lines can be moved.
+#enzyme_pos = {'uraH': [500, 400], 'PRHOXNB': [500, 600], 'TIGR03212': [500, 800],
+       #       'alc': [500, 1000], 'urease' : [1400, 300]}
+
+
+
+
+
+###########################
+############## Plotting contigs!
+######### Reading values for each contig from Data_Table, calculating parameters, drawing ellipse!
+for i in range(Data_Table.getRowCount()-1,0,-1):
+    Row = Data_Table.getRow(i)
+    ID = Row.getString(0)
+    Len = Row.getInt(1)
+    Cov = Row.getFloat(2)
+    GC = Row.getFloat(3)
+    Taxon = Row.getString(4)
+    #Enzymes = [Row.getString(5),Row.getString(6),Row.getString(7),Row.getString(8),Row.getString(9)]
+    
+    ypos = CalculateY(Cov)
+    xpos = CalculateX(GC)
+    diameter = CalculateDiameter(Len)
+    SelectColor(Taxon, 100)
+    
+    noStroke()
+    ellipse(xpos,ypos,diameter,diameter)
+    
+    # Also, recording info about enzymes
+    #for i in range(len(Enzymes)):
+    #    if Enzymes[i] == "+":
+    #        enzyme_ctgs[i].append([xpos, ypos, diameter])
+        
+            
+                    
+
+
+####### Plotting lines pointing at enzymes
+## I don't think you want to plot lines for Enzymes #7, #8 and #9 (see line 111 for numbers) - they are just too common...
+## This section is commented off for now - remove triple quotation marks if you want to use it.
+'''
+textAlign(RIGHT)
+textSize(50)
+strokeWeight(1)
+stroke(0)
+fill(0)
+for i in [0,2,3,4]:
+    enzyme = enzyme_list[i]
+    enz_x = enzyme_pos[enzyme][0]
+    enz_y = enzyme_pos[enzyme][1]
+    fill(0)
+    text(enzyme, enz_x-10, enz_y) 
+    
+    for ctg in enzyme_ctgs[i]:
+        line(ctg[0], ctg[1], enz_x, enz_y)
+        fill(255,0)
+        ellipse(ctg[0], ctg[1], ctg[2], ctg[2])
+
+
+
+
+'''
+
+
+########## Drawing legend
+
+fill(0)
+textSize(50)
+ypos = plot_y_start + 50
+xpos = plot_x_end + 40
+textAlign(LEFT)
+
+text("Taxonomy", xpos, ypos)
+ypos += 40
+
+textSize(30)
+strokeWeight(1)
+
+for taxon in Taxon_list:
+        SelectColor(taxon, 255)
+        rect(xpos,ypos,60,40)
+        fill(0)
+        text(taxon, xpos+70, ypos+28)
+        ypos += 70
+
+ypos += 70
+textSize(40)
+text("Contig size", xpos, ypos)
+ypos += 50
+
+textSize(30)
+for k in [1000, 5000, 10000, 50000, 100000]:
+    diameter = CalculateDiameter(k)
+    ellipse(xpos+20, ypos, diameter, diameter)
+    text("%d bp" % k, xpos+70, ypos+10)
+    ypos += 70
+
+
+
+
+### Finish making figure
+println("Finished.")
+endRecord()
