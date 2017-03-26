@@ -208,7 +208,7 @@ sam_len_cov_gc_insert.pl -s samfile -f scaffold.fa
 
 ## GC Plots
 
-[embed]https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/GC%20Plots/sample1_output.pdf[/embed]
+![Alt text](https://github.com/dhantha/Genomics-Project-Scripts/blob/master/Figures/GC%20Plots/gc.png)
 
 
 
