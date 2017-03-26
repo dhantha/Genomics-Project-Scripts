@@ -7,8 +7,7 @@
 ### Dhantha Gunarathna
 ### Feiyang Xue
 
-## This project consist of bash scripts to run the following programs. Make usre to change username, and other computing 
-resources accordingly 
+## This project consist of bash scripts to run the following programs. Make sure to change username, and other computing resources accordingly 
 ```
 1. FASTQC
 2. Kneaddata
@@ -58,9 +57,10 @@ kneaddata can be run using multiple databases. For help use
 ```
 kneaddata --help
 ```
+
 refer the kneaddata_submitter.sh to submit jobs
 
-## Create a Database 
+## Bowtie2-build
 
 Use the bowtie2-build to create a custom database. By creating a custom database allows to filter contaminant sequence properly from the data.
 Reference genomes to build the custom databse can be downloaded from the NCBI or other source 
@@ -68,6 +68,34 @@ Reference genomes to build the custom databse can be downloaded from the NCBI or
 ```
 bowtie2-build /path/to/input.fasta -o /path/to/output/db 
 ```
+
+## MetaPhlAn2
+
+MetaPhlAn is a computational tool for profiling the composition of microbial communities (Bacteria, Archaea, Eukaryotes and Viruses) from metagenomic shotgun sequencing data with species level resolution
+Source: https://bitbucket.org/biobakery/metaphlan2
+
+To install MetaPhlAn2
+```
+mkdir -p ~/software/metaphlan2
+cd ~/software/metaphlan2
+
+wget https://bitbucket.org/biobakery/metaphlan2/get/default.zip
+unzip default.zip
+rm default.zip
+
+mv biobakery-metaphlan2* metaphlan2
+cd metaphlan2
+
+export PATH=~/software/metaphlan2/metaphlan2:$PATH
+export mpa_dir=~/software/metaphlan2/metaphlan2
+```
+
+To Run 
+```
+metaphlan2.py metagenome.fastq --input_type fastq > profiled_metagenome.txt
+```
+MetaPhlAn2 can take either pair end or combined fastq files. Refer to metaphlan2.sh for pair end submit and metaphaln combined for combined fastq. 
+Pair end files can be combines using qiime join_paired_ends.py (http://qiime.org/scripts/join_paired_ends.html)
 
 
 
